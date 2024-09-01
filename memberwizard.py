@@ -93,7 +93,7 @@ def create_rank_callback(rank_name):
             color=discord.Color.blue()
         )
         embed.set_image(url=RANK_URLS[rank_name])
-        await interaction.response.send_message(embed=embed, ephemeral=True)
+        await interaction.response.send_message(embed=embed, ephemeral=False)
 
     return rank_callback
 
