@@ -86,14 +86,16 @@ async def show_rank_panel(thread):
 
 # Callback function when a rank is selected
 def create_rank_callback(rank_name):
-    async def rank_callback(interaction):
+    async def rank_callback(interaction: discord.Interaction):
         embed = discord.Embed(
             title=f"{rank_name} Requirements",
             description=f"Here are the requirements for {rank_name}:",
             color=discord.Color.blue()
         )
         embed.set_image(url=RANK_URLS[rank_name])
-        await interaction.response.send_message(embed=embed, ephemeral=False)
+
+        # Send a follow-up message
+        await interaction.followup.send(embed=embed, ephemeral=False)
 
     return rank_callback
 
