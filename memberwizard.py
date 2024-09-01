@@ -93,9 +93,9 @@ def create_rank_callback(rank_name):
             color=discord.Color.blue()
         )
         embed.set_image(url=RANK_URLS[rank_name])
-
-        # Send a follow-up message
-        await interaction.followup.send(embed=embed, ephemeral=False)
+        
+        # Use followup.send to ensure visibility to everyone
+        await interaction.response.send_message(embed=embed, ephemeral=False)
 
     return rank_callback
 
