@@ -55,8 +55,9 @@ async def on_thread_create(thread):
         embed = discord.Embed(
             description="Please upload screenshots of our base requirements and a staff member will help you shortly.\n\n"
                         "**Important Notes:**\n"
-                        "1. Everyone is starting fresh, so please make sure you meet the base requirements.\n"
-                        "2. Your nickname in the server must match your RuneScape Name (RSN). You can set this by editing your Server Profile.",
+                        "1. No Bank Screenshots\n"
+                        "2. Please make sure you meet the base requirements.\n"
+                        "3. Your nickname in the server must match your RuneScape Name (RSN). You can set this by editing your Server Profile.",
             color=discord.Color.green()
         )
         embed.set_image(url="https://i.postimg.cc/fbw5kWMT/image.png")
@@ -94,8 +95,13 @@ def create_rank_callback(rank_name):
         )
         embed.set_image(url=RANK_URLS[rank_name])
         
-        # Use followup.send to ensure visibility to everyone
-        await interaction.response.send_message(embed=embed, ephemeral=False)
+        # Check if the interaction is already responded to
+        if interaction.response.is_done():
+            # Use followup.send to ensure visibility to everyone
+            await interaction.followup.send(embed=embed)
+        else:
+            # Otherwise, use response.send_message
+            await interaction.response.send_message(embed=embed)
 
     return rank_callback
 
