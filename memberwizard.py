@@ -95,13 +95,17 @@ def create_rank_callback(rank_name):
         )
         embed.set_image(url=RANK_URLS[rank_name])
         
-        # Check if the interaction is already responded to
-        if interaction.response.is_done():
-            # Use followup.send to ensure visibility to everyone
-            await interaction.followup.send(embed=embed)
-        else:
-            # Otherwise, use response.send_message
-            await interaction.response.send_message(embed=embed)
+        try:
+            # Check if the interaction response is already done
+            if interaction.response.is_done():
+                await interaction.followup.send(embed=embed)
+            else:
+                # Ensure the message is sent publicly by using followup.send
+                await interaction.followup.send(embed=embed)
+        except discord.Forbidden:
+            print("Bot does not have permission to send messages in this channel.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     return rank_callback
 
