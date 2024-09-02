@@ -94,21 +94,17 @@ def create_rank_callback(rank_name):
             color=discord.Color.blue()
         )
         embed.set_image(url=RANK_URLS[rank_name])
-        
+
         try:
-            # Check if the interaction response is already done
-            if interaction.response.is_done():
-                await interaction.followup.send(embed=embed)
-            else:
-                # Ensure the message is sent publicly by using followup.send
-                await interaction.followup.send(embed=embed)
+            # Send the embed publicly using followup.send
+            await interaction.followup.send(embed=embed)
         except discord.Forbidden:
             print("Bot does not have permission to send messages in this channel.")
         except Exception as e:
             print(f"An error occurred: {e}")
 
     return rank_callback
-
+    
 # Handle the addition of the "Recruit" role
 @bot.event
 async def on_member_update(before, after):
