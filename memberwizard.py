@@ -96,8 +96,8 @@ def create_rank_callback(rank_name):
         embed.set_image(url=RANK_URLS[rank_name])
 
         try:
-            # Send the embed publicly using followup.send
-            await interaction.followup.send(embed=embed)
+            # Send the embed publicly in the channel
+            await interaction.channel.send(embed=embed)
         except discord.Forbidden:
             print("Bot does not have permission to send messages in this channel.")
         except Exception as e:
