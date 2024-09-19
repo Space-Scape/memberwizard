@@ -35,7 +35,7 @@ RANK_URLS = {
     "Commander": "https://i.postimg.cc/wxF79JDX/image.png",
     "TzKal": "https://i.postimg.cc/FzKCdqGg/image.png",
     "Twisted": "https://i.postimg.cc/GttFFTN6/image.png",
-    "Sanguine": "https://postimg.cc/Y4xCFTSH/809732ca"
+    "Sanguine": "https://i.postimg.cc/MTPyZkmy/image.png"
 }
 
 # Event when the bot is ready
