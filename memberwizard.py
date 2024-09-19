@@ -33,7 +33,7 @@ RANK_URLS = {
     "TzTok": "https://i.postimg.cc/2S0wvVph/image.png",
     "Officer": "https://i.postimg.cc/RF5nnB0w/image.png",
     "Commander": "https://i.postimg.cc/wxF79JDX/image.png",
-    "TzKal": "https://i.postimg.cc/2S0wvVph/image.png",
+    "TzKal": "https://i.postimg.cc/FzKCdqGg/image.png",
     "Twisted": "https://i.postimg.cc/zBYYmddJ/image.png",
     "Sanguine": "https://postimg.cc/Y4xCFTSH/809732ca"
 }
