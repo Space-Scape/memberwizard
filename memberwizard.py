@@ -27,15 +27,15 @@ RANK_INFO = [
 ]
 
 RANK_URLS = {
-    "Recruit": "https://i.postimg.cc/fbw5kWMT/image.png",
-    "Corporal": "https://i.postimg.cc/zG7yjqYQ/image.png",
-    "Sergeant": "https://i.postimg.cc/HnYKb0wR/image.png",
-    "TzTok": "https://i.postimg.cc/mkTDMn64/image.png",
-    "Officer": "https://i.postimg.cc/6QSb8Jq7/image.png",
-    "Commander": "https://i.postimg.cc/cJZ4P20n/image.png",
-    "TzKal": "https://i.postimg.cc/59p7zCXd/image.png",
-    "Aspirational 1": "https://i.postimg.cc/c4RQYq9K/image.png",
-    "Aspirational 2": "https://i.postimg.cc/vTSCtgHz/image.png"
+    "Recruit": "https://i.postimg.cc/4xQvGn4j/image.png",
+    "Corporal": "https://i.postimg.cc/qqQ008Yz/image.png",
+    "Sergeant": "https://i.postimg.cc/yNTLLvSg/image.png",
+    "TzTok": "https://i.postimg.cc/2S0wvVph/image.png",
+    "Officer": "https://i.postimg.cc/RF5nnB0w/image.png",
+    "Commander": "https://i.postimg.cc/wxF79JDX/image.png",
+    "TzKal": "https://i.postimg.cc/2S0wvVph/image.png",
+    "Twisted": "https://i.postimg.cc/zBYYmddJ/image.png",
+    "Sanguine": "https://postimg.cc/Y4xCFTSH/809732ca"
 }
 
 # Event when the bot is ready
