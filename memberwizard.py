@@ -22,8 +22,8 @@ RANK_INFO = [
     ("Officer", "officer"),
     ("Commander", "commander"),
     ("TzKal", "tzkal"),
-    ("Aspirational 1", "aspirational1"),
-    ("Aspirational 2", "aspirational2")
+    ("Twisted", "twisted"),
+    ("Sanguine", "sanguine")
 ]
 
 RANK_URLS = {
