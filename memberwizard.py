@@ -48,7 +48,7 @@ async def on_ready():
 async def on_thread_create(thread):
     await asyncio.sleep(2)  # Wait to ensure messages are at the bottom
     
-    if thread.parent.name == "🍌rank-up" and thread.name.startswith("Rank-Up-"):
+    if thread.parent.name == "rank-up〔🍌〕" and thread.name.startswith("Rank-Up-"):
         await show_rank_panel(thread)
     
     elif thread.parent.name == "become-a-member" and thread.name.startswith("Welcome-"):
