@@ -146,7 +146,7 @@ def create_welcome_embed(guild, clan_staff_role_id):
                     "     - *Contact the staff team by creating a support ticket.*\n"
                     "⚔️ **[Rank Up](https://discord.com/channels/{guild.id}/1272648472184487937)**\n"
                     "     - *Use the buttons in this channel to request a rank up.*\n\n"
-                    f"⚠️ *If you encounter any issues, you can always reach out to the @Clan Staff or use the* **[Support Ticket](https://discord.com/channels/{guild.id}/1272648498554077304)** *channel for assistance.*\n\n"
+                    f"⚠️ *If you encounter any issues, you can always reach out to the Clan Staff or use the* **[Support Ticket](https://discord.com/channels/{guild.id}/1272648498554077304)** *channel for assistance.*\n\n"
                     "**We're excited to have you here!**\nGet involved, make new friends, and enjoy your time with us. 🌟",
         color=discord.Color.gold()
     ).set_thumbnail(url="https://i.postimg.cc/fbw5kWMT/image.png")
