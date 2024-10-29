@@ -53,8 +53,8 @@ async def on_thread_create(thread):
     
     elif thread.parent.name == "become-a-member" and thread.name.startswith("Welcome-"):
         embed = discord.Embed(
-            description="Please upload screenshots of our base requirements and a staff member will help you shortly.\n\n"
-                        "# **Important Notes:** #\n"
+            description="# Please upload screenshots of our requirements and a staff member will help you shortly. #\n\n"
+                        "## **Important:** ##\n"
                         "## 1. No Bank Screenshots! ##\n"
                         "## 2. Full client screenshots with chatbox open please. ##\n"
                         "## 3. Please make sure you meet the base requirements. ##\n"
@@ -69,9 +69,10 @@ async def show_rank_panel(thread):
     guild = thread.guild
     embed = discord.Embed(
         title="Rank up",
-        description="Please post screenshots within your ticket that contain the following:\n"
-                    "1: Your in-game name (so we know it's really you).\n"
-                    "2: The requirements in the image for the rank that you are applying for.",
+        description="# Please post screenshots within your ticket that contain the following: #\n"
+                    "## 1: Your in-game name (so we know it's you). ##\n"
+                    "## 2: The requirements in the image for the rank that you are applying for. ##\n",
+                    "## 3: Full client screenshots with chatbox open please. ##"
         color=discord.Color.green()
     )
 
