@@ -70,7 +70,7 @@ async def show_rank_panel(thread):
     guild = thread.guild
     embed = discord.Embed(
         title="Rank Up :crossed_swords:",
-        description="# Select the button for the rank you want below. #"
+        description="# Select the button for the rank you want below. #\n"
                     "## Screenshots within your ticket should contain the following: ##\n"
                     "### 1: Full client screenshots with chatbox open please. :camera: ##\n"
                     "### 2: The requirements in the image for the rank. :crossed_swords: ##\n"
