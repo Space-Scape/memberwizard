@@ -54,10 +54,10 @@ async def on_thread_create(thread):
     elif thread.parent.name == "become-a-member" and thread.name.startswith("Welcome-"):
         embed = discord.Embed(
             description="Please upload screenshots of our base requirements and a staff member will help you shortly.\n\n"
-                        "**Important Notes:**\n"
+                        "# **Important Notes:** #\n"
                         "## 1. No Bank Screenshots ##\n"
                         "## 2. Full client screenshots only. ##\n"
-                        "## 3. Please make sure you meet the base requirements.\n ##"
+                        "## 3. Please make sure you meet the base requirements. ##\n"
                         "## 4. Your nickname in the server must match your RuneScape Name (RSN). You can set this by editing your Server Profile. ##",
             color=discord.Color.green()
         )
