@@ -53,12 +53,12 @@ async def on_thread_create(thread):
     
     elif thread.parent.name == "become-a-member" and thread.name.startswith("Welcome-"):
         embed = discord.Embed(
-            description="# Please upload screenshots of our requirements and a staff member will help you shortly. #\n\n"
-                        "## **Important:** ##\n"
-                        "## 1. No Bank Screenshots! ##\n"
-                        "## 2. Full client screenshots with chatbox open please. ##\n"
-                        "## 3. Please make sure you meet the base requirements. ##\n"
-                        "## 4. Your server nickname must match your RSN. ##",
+            description="# Please upload screenshots of our requirements and a staff member will help you shortly. :hourglass: #\n\n"
+                        "## **Important:** :loudspeaker: ##\n"
+                        "## 1. No Bank Screenshots! :no_entry_sign: :bank: ##\n"
+                        "## 2. Full client screenshots with chatbox open. :camera: ##\n"
+                        "## 3. Please make sure you meet the requirements. :crossed_swords: ##\n"
+                        "## 4. Your server nickname must match your RSN. :bust_in_silhouette: ##",
             color=discord.Color.green()
         )
         embed.set_image(url="https://i.postimg.cc/fbw5kWMT/image.png")
@@ -71,9 +71,9 @@ async def show_rank_panel(thread):
         title="Rank Up :crossed_swords:",
         description="# Select the button for the rank that you want below. #"
                     "# Screenshots within your ticket should contain the following: #\n"
-                    "## 1: Full client screenshots with chatbox open please. ##\n"
-                    "## 2: The requirements in the image for the rank. ##\n"
-                    "## 3: Your in-game name. ##",
+                    "## 1: Full client screenshots with chatbox open please. :camera: ##\n"
+                    "## 2: The requirements in the image for the rank. :crossed_swords: ##\n"
+                    "## 3: Your in-game name. :bust_in_silhouette: ##",
         color=discord.Color.green()
     )
 
