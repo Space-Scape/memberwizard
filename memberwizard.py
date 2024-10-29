@@ -68,11 +68,12 @@ async def on_thread_create(thread):
 async def show_rank_panel(thread):
     guild = thread.guild
     embed = discord.Embed(
-        title="Rank up",
-        description="# Please post screenshots within your ticket that contain the following: #\n"
-                    "## 1: Your in-game name (so we know it's you). ##\n"
-                    "## 2: The requirements in the image for the rank that you are applying for. ##\n"
-                    "## 3: Full client screenshots with chatbox open please. ##",
+        title="Rank Up :crossed_swords:",
+        description="# Select the button for the rank that you want below. #"
+                    "# Screenshots within your ticket should contain the following: #\n"
+                    "## 1: Full client screenshots with chatbox open please. ##\n"
+                    "## 2: The requirements in the image for the rank. ##\n"
+                    "## 3: Your in-game name. ##",
         color=discord.Color.green()
     )
 
