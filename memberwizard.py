@@ -54,7 +54,7 @@ async def on_thread_create(thread):
     elif thread.parent.name == "become-a-member" and thread.name.startswith("Welcome-"):
         embed = discord.Embed(
             title="Welcome :wave:",
-            description="**Please upload screenshots of our base requirements and a staff member will help you when available.** :hourglass: \n\n"
+            description="**Please upload screenshots of our base requirements and a staff member will help you when available.** :hourglass: \n"
                         "## **Important:** :loudspeaker: ##\n"
                         "### 1. No Bank Screenshots! :no_entry_sign: :bank: ###\n"
                         "### 2. Full client screenshots with chatbox open :camera: ###\n"
