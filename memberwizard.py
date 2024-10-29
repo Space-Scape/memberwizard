@@ -54,7 +54,7 @@ async def on_thread_create(thread):
     elif thread.parent.name == "become-a-member" and thread.name.startswith("Welcome-"):
         embed = discord.Embed(
             title="Welcome :wave:",
-            description="# Please upload screenshots of our base requirements and a staff member will help you when available. :hourglass: #\n\n"
+            description="**Please upload screenshots of our base requirements and a staff member will help you when available.** :hourglass: \n\n"
                         "## **Important:** :loudspeaker: ##\n"
                         "### 1. No Bank Screenshots! :no_entry_sign: :bank: ###\n"
                         "### 2. Full client screenshots with chatbox open :camera: ###\n"
@@ -127,9 +127,9 @@ async def on_member_update(before, after):
 def create_welcome_embed(guild, clan_staff_role_id):
     return discord.Embed(
         title="🎉 Welcome to the Clan! 🎉",
-        description="**Congratulations on becoming a Recruit!**\nWe're thrilled to have you with us. 🎊\n\n"
+        description="**We're thrilled to have you with us!** 🎊\n\n"
                     f"First and foremost, please make sure you visit our 📜 **[Clan Rules](https://discord.com/channels/{guild.id}/1272629843552501802)** to ensure you're aware of the guidelines and avoid any accidental rule-breaking.\n\n"
-                    "Below are some channels that will help you get started and connect with our community:\n\n"
+                    "Below are some channels that will help you get started:\n\n"
                     f":busts_in_silhouette: **[Self-Role Assign](https://discord.com/channels/{guild.id}/1272648586198519818)**\n"
                     "     - *Select roles to be pinged for bosses and raids.*\n"
                     "💭 **[General Chat](https://discord.com/channels/{guild.id}/1272629331524587623)**\n"
@@ -146,7 +146,7 @@ def create_welcome_embed(guild, clan_staff_role_id):
                     "     - *Contact the staff team by creating a support ticket.*\n"
                     "⚔️ **[Rank Up](https://discord.com/channels/{guild.id}/1272648472184487937)**\n"
                     "     - *Use the buttons in this channel to request a rank up.*\n\n"
-                    f"⚠️ *If you encounter any issues, you can always reach out to the* <@&{clan_staff_role_id}> *or use the* **[Support Ticket](https://discord.com/channels/{guild.id}/1272648498554077304)** *channel for assistance.*\n\n"
+                    f"⚠️ *If you encounter any issues, you can always reach out to the* <@&{1272635396991221824}> *or use the* **[Support Ticket](https://discord.com/channels/{guild.id}/1272648498554077304)** *channel for assistance.*\n\n"
                     "**We're excited to have you here!**\nGet involved, make new friends, and enjoy your time with us. 🌟",
         color=discord.Color.gold()
     ).set_thumbnail(url="https://i.postimg.cc/fbw5kWMT/image.png")
