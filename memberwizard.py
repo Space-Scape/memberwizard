@@ -71,8 +71,8 @@ async def show_rank_panel(thread):
         title="Rank up",
         description="# Please post screenshots within your ticket that contain the following: #\n"
                     "## 1: Your in-game name (so we know it's you). ##\n"
-                    "## 2: The requirements in the image for the rank that you are applying for. ##\n",
-                    "## 3: Full client screenshots with chatbox open please. ##"
+                    "## 2: The requirements in the image for the rank that you are applying for. ##\n"
+                    "## 3: Full client screenshots with chatbox open please. ##",
         color=discord.Color.green()
     )
 
