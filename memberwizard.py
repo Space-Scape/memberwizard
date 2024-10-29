@@ -56,9 +56,9 @@ async def on_thread_create(thread):
             description="# Please upload screenshots of our requirements and a staff member will help you shortly. :hourglass: #\n\n"
                         "## **Important:** :loudspeaker: ##\n"
                         "### 1. No Bank Screenshots! :no_entry_sign: :bank: ###\n"
-                        "### 2. Full client screenshots with chatbox open. :camera: ###\n"
-                        "### 3. Please make sure you meet the requirements. :crossed_swords: ###\n"
-                        "### 4. Your server nickname must match your RSN. :bust_in_silhouette: ###\n"
+                        "### 2. Full client screenshots with chatbox open :camera: ###\n"
+                        "### 3. Please make sure you meet the requirements :crossed_swords: ###\n"
+                        "### 4. Your server nickname must match your RSN :bust_in_silhouette: ###\n"
                         "# Base requirements to join: #",
             color=discord.Color.green()
         )
