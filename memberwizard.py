@@ -55,7 +55,7 @@ async def on_thread_create(thread):
         embed = discord.Embed(
             title="Welcome :wave:",
             description="### Please upload screenshots of our base requirements and a staff member will help you when available. :hourglass: ###\n"
-                        "## **Important:** :loudspeaker: ##\n"
+                        "## **Important:**  :loudspeaker: ##\n"
                         "### 1. No Bank Screenshots! :no_entry_sign: :bank: ###\n"
                         "### 2. Full client screenshots with chatbox open :camera: ###\n"
                         "### 3. Please make sure you meet the requirements :crossed_swords: ###\n"
@@ -71,7 +71,7 @@ async def show_rank_panel(thread):
     guild = thread.guild
     embed = discord.Embed(
         title="Rank Up :crossed_swords:",
-        description="# Screenshots within your ticket should contain: #\n"
+        description="## Screenshots within your ticket should contain: ##\n"
                     "### 1: Full client screenshots with chatbox open :camera: ##\n"
                     "### 2: The requirements in the image for the rank :crossed_swords: ##\n"
                     "### 3: Your in-game name. :bust_in_silhouette: ##\n"
