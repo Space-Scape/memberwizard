@@ -11,7 +11,7 @@ intents.reactions = True
 intents.guilds = True
 intents.members = True
 
-bot = commands.Bot(command_prefix="/", intents=intents, help_command=None)  # Disable the default help command
+bot = commands.Bot(command_prefix="!", intents=intents, help_command=None)  # Disable the default help command
 
 # Basic setup for ranks and rank panel
 RANK_INFO = [
