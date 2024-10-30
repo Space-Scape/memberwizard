@@ -159,7 +159,7 @@ async def send_welcome_message(member):
     
     if become_member_channel:
         # Find the user's thread
-        thread_name = f"Welcome-{member.name}"
+        thread_name = f"Welcome-{member.id}"
         thread = discord.utils.get(become_member_channel.threads, name=thread_name)
         
         if thread:
