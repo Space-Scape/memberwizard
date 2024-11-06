@@ -4,6 +4,13 @@ from discord.ext import commands
 from discord.ui import Button, View
 import os  # Import os to get environment variables
 
+# Channel ID Constants
+RANK_UP_CHANNEL_ID = 1272648472184487937
+BECOME_MEMBER_CHANNEL_ID = 1272648453264248852
+RULES_CHANNEL_ID = 1272629843552501802
+SELF_ROLE_CHANNEL_ID = 1272648586198519818
+SUPPORT_TICKET_CHANNEL_ID = 1272648498554077304
+
 # Discord Bot Setup
 intents = discord.Intents.default()
 intents.message_content = True
@@ -48,10 +55,10 @@ async def on_ready():
 async def on_thread_create(thread):
     await asyncio.sleep(2)  # Wait to ensure messages are at the bottom
     
-    if thread.parent.name == "rank-up〔🍌〕" and thread.name.startswith("Rank-Up-"):
+    if thread.parent.id == RANK_UP_CHANNEL_ID and thread.name.startswith("Rank-Up-"):
         await show_rank_panel(thread)
     
-    elif thread.parent.name == "become-a-member" and thread.name.startswith("Welcome-"):
+    elif thread.parent.id == BECOME_MEMBER_CHANNEL_ID and thread.name.startswith("Welcome-"):
         embed = discord.Embed(
             title="Welcome :wave:",
             description="### Please upload screenshots of our base requirements and a staff member will help you when available. :hourglass: ###\n"
@@ -128,9 +135,9 @@ def create_welcome_embed(guild, clan_staff_role_id):
     return discord.Embed(
         title="🎉 Welcome to the Clan! 🎉",
         description="**We're thrilled to have you with us!** 🎊\n\n"
-                    f"First and foremost, please make sure you visit our 📜 **[Clan Rules](https://discord.com/channels/{guild.id}/1272629843552501802)** to ensure you're aware of the guidelines and avoid any accidental rule-breaking.\n\n"
+                    f"First and foremost, please make sure you visit our 📜 **[Clan Rules](https://discord.com/channels/{guild.id}/{RULES_CHANNEL_ID})** to ensure you're aware of the guidelines.\n\n"
                     "Below are some channels that will help you get started:\n\n"
-                    f"💡 **[Self-Role Assign](https://discord.com/channels/{guild.id}/1272648586198519818)**\n"
+                    f"💡 **[Self-Role Assign](https://discord.com/channels/{guild.id}/{SELF_ROLE_CHANNEL_ID})**\n"
                     "     - *Select roles to be pinged for bosses and raids.*\n"
                     "💭 **[General Chat](https://discord.com/channels/{guild.id}/1272629331524587623)**\n"
                     "     - *Drop by and say hello!* 💬\n"
@@ -142,11 +149,11 @@ def create_welcome_embed(guild, clan_staff_role_id):
                     "     - *Find teams for PVM activities.*\n"
                     ":loudspeaker: **[Events](https://discord.com/channels/{guild.id}/1272646577432825977)**\n"
                     "     - *Stay informed about upcoming events, competitions, and activities!*\n"
-                    "⭐ **[Support Ticket](https://discord.com/channels/{guild.id}/1272648498554077304)**\n"
+                    "⭐ **[Support Ticket](https://discord.com/channels/{guild.id}/{SUPPORT_TICKET_CHANNEL_ID})**\n"
                     "     - *Contact the staff team by creating a support ticket.*\n"
-                    "⚔️ **[Rank Up](https://discord.com/channels/{guild.id}/1272648472184487937)**\n"
+                    "⚔️ **[Rank Up](https://discord.com/channels/{guild.id}/{RANK_UP_CHANNEL_ID})**\n"
                     "     - *Use the buttons in this channel to request a rank up.*\n\n"
-                    f"⚠️ *If you encounter any issues, you can always reach out to the Clan Staff or use the* **[Support Ticket](https://discord.com/channels/{guild.id}/1272648498554077304)** *channel for assistance.*\n\n"
+                    f"⚠️ *If you encounter any issues, you can always reach out to the Clan Staff or use the* **[Support Ticket](https://discord.com/channels/{guild.id}/{SUPPORT_TICKET_CHANNEL_ID})** *channel for assistance.*\n\n"
                     "**We're excited to have you here!**\nGet involved, make new friends, and enjoy your time with us. 🌟",
         color=discord.Color.gold()
     ).set_thumbnail(url="https://i.postimg.cc/fbw5kWMT/image.png")
@@ -154,7 +161,7 @@ def create_welcome_embed(guild, clan_staff_role_id):
 # Function to send the welcome message to the user's "become-a-member" ticket
 async def send_welcome_message(member):
     guild = member.guild
-    become_member_channel = discord.utils.get(guild.text_channels, name="become-a-member")
+    become_member_channel = guild.get_channel(BECOME_MEMBER_CHANNEL_ID)  # Use the ID here
     clan_staff_role_id = 1272635396991221824  # Ensure this ID is correct and matches the "Clan Staff" role
     
     if become_member_channel:
