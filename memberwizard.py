@@ -50,15 +50,13 @@ RANK_URLS = {
 async def on_ready():
     print(f'memberwizard.py script is currently running')
 
-# Monitor thread creation for rank-up and become-a-member channels
+# Monitor thread creation for the "become-a-member" channel only
 @bot.event
 async def on_thread_create(thread):
     await asyncio.sleep(2)  # Wait to ensure messages are at the bottom
     
-    if thread.parent.id == RANK_UP_CHANNEL_ID and thread.name.startswith("Rank-Up-"):
-        await show_rank_panel(thread)
-    
-    elif thread.parent.id == BECOME_MEMBER_CHANNEL_ID and thread.name.startswith("Welcome-"):
+    # Handle welcome message in the "become-a-member" channel only
+    if thread.parent.id == BECOME_MEMBER_CHANNEL_ID and thread.name.startswith("Welcome-"):
         embed = discord.Embed(
             title="Welcome :wave:",
             description="### Please upload screenshots of our base requirements and a staff member will help you when available. :hourglass: ###\n"
@@ -73,55 +71,6 @@ async def on_thread_create(thread):
         embed.set_image(url="https://i.postimg.cc/fbw5kWMT/image.png")
         await thread.send(embed=embed)
 
-# Function to show the rank panel
-async def show_rank_panel(thread):
-    guild = thread.guild
-    embed = discord.Embed(
-        title="Rank Up :crossed_swords:",
-        description="## Screenshots within your ticket should contain: ##\n"
-                    "### 1: Full client screenshots with chatbox open :camera: ##\n"
-                    "### 2: The requirements in the image for the rank :crossed_swords: ##\n"
-                    "### 3: Your in-game name. :bust_in_silhouette: ##\n"
-                    "## Select the button for the rank you want below: ##",
-        color=discord.Color.green()
-    )
-
-    view = View(timeout=None)
-
-    for rank_name, rank_key in RANK_INFO:
-        # Use your custom emoji
-        custom_emoji = discord.utils.get(guild.emojis, name=rank_key)
-        button = Button(label=rank_name, style=discord.ButtonStyle.primary, custom_id=rank_key, emoji=custom_emoji)
-        button.callback = create_rank_callback(rank_name)
-        view.add_item(button)
-
-    await thread.send(embed=embed, view=view)
-
-# Callback function when a rank is selected
-def create_rank_callback(rank_name):
-    async def rank_callback(interaction: discord.Interaction):
-        embed = discord.Embed(
-            title=f"{rank_name} Requirements",
-            description=f"Here are the requirements for {rank_name}:",
-            color=discord.Color.blue()
-        )
-        embed.set_image(url=RANK_URLS[rank_name])
-        
-        try:
-            # Acknowledge the interaction first
-            if not interaction.response.is_done():
-                await interaction.response.defer()
-
-            # Send the message publicly using follow-up (ephemeral=False ensures it's public)
-            await interaction.followup.send(embed=embed, ephemeral=False)
-
-        except discord.Forbidden:
-            print("Bot does not have permission to send messages in this channel.")
-        except Exception as e:
-            print(f"An error occurred: {e}")
-
-    return rank_callback
-    
 # Handle the addition of the "Recruit" role
 @bot.event
 async def on_member_update(before, after):
@@ -161,12 +110,12 @@ def create_welcome_embed(guild, clan_staff_role_id):
 # Function to send the welcome message to the user's "become-a-member" ticket
 async def send_welcome_message(member):
     guild = member.guild
-    become_member_channel = guild.get_channel(BECOME_MEMBER_CHANNEL_ID)  # Use the ID here
+    become_member_channel = guild.get_channel(BECOME_MEMBER_CHANNEL_ID)
     clan_staff_role_id = 1272635396991221824  # Ensure this ID is correct and matches the "Clan Staff" role
     
     if become_member_channel:
-        # Find the user's thread
-        thread_name = f"Welcome-{member.nick or member.name}"
+        # Use the unique member ID for finding the thread
+        thread_name = f"Welcome-{member.id}"
         thread = discord.utils.get(become_member_channel.threads, name=thread_name)
         
         if thread:
