@@ -4,8 +4,8 @@ from discord.ext import commands
 import os  # Import os to get environment variables
 
 # Channel ID Constants
-RANK_UP_CHANNEL_ID = 1272648472184487937
-BECOME_MEMBER_CHANNEL_ID = 1272648453264248852
+RANK_UP_CHANNEL_ID = 1272648472184487937  # Replace with the actual ID of your rank-up channel
+BECOME_MEMBER_CHANNEL_ID = 1272648453264248852  # Replace with the actual ID of your become-a-member channel
 RULES_CHANNEL_ID = 1272629843552501802
 SELF_ROLE_CHANNEL_ID = 1272648586198519818
 SUPPORT_TICKET_CHANNEL_ID = 1272648498554077304
@@ -29,7 +29,7 @@ async def on_ready():
 async def on_thread_create(thread):
     await asyncio.sleep(2)  # Wait to ensure messages are at the bottom
 
-    # Send rank-up message without buttons in the "rank-up" channel
+    # Send rank-up message in the "rank-up" channel
     if thread.parent.id == RANK_UP_CHANNEL_ID and thread.name.startswith("Rank-Up-"):
         embed = discord.Embed(
             title="Rank Up :crossed_swords:",
@@ -41,7 +41,7 @@ async def on_thread_create(thread):
         )
         await thread.send(embed=embed)
     
-    # Send welcome message in the "become-a-member" channel
+    # Send welcome message in the "become-a-member" channel only
     elif thread.parent.id == BECOME_MEMBER_CHANNEL_ID and thread.name.startswith("Welcome-"):
         embed = discord.Embed(
             title="Welcome :wave:",
@@ -100,15 +100,21 @@ async def send_welcome_message(member):
     clan_staff_role_id = 1272635396991221824  # Ensure this ID is correct and matches the "Clan Staff" role
     
     if become_member_channel:
-        # Use the unique member ID for finding the thread
-        thread_name = f"Welcome-{member.id}"
-        thread = discord.utils.get(become_member_channel.threads, name=thread_name)
+        # Search for the thread using either the nickname or username
+        thread_name_nickname = f"Welcome-{member.nick}" if member.nick else None
+        thread_name_username = f"Welcome-{member.name}"
+        
+        # Find the thread that matches either the nickname or username
+        thread = discord.utils.find(
+            lambda t: t.name == thread_name_nickname or t.name == thread_name_username,
+            become_member_channel.threads
+        )
         
         if thread:
             embed = create_welcome_embed(guild, clan_staff_role_id)
             await thread.send(embed=embed)
         else:
-            print(f"Thread not found: {thread_name}")
+            print(f"Thread not found for {member.name} or {member.nick}")
     else:
         print("Channel not found: become-a-member")
 
