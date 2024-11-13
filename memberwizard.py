@@ -1,7 +1,6 @@
 import discord
 import asyncio
 from discord.ext import commands
-from discord.ui import Button, View
 import os  # Import os to get environment variables
 
 # Channel ID Constants
@@ -20,43 +19,30 @@ intents.members = True
 
 bot = commands.Bot(command_prefix="!", intents=intents, help_command=None)  # Disable the default help command
 
-# Basic setup for ranks and rank panel
-RANK_INFO = [
-    ("Recruit", "recruit"),
-    ("Corporal", "corporal"),
-    ("Sergeant", "sergeant"),
-    ("TzTok", "tztok"),
-    ("Officer", "officer"),
-    ("Commander", "commander"),
-    ("TzKal", "tzkal"),
-    ("Twisted", "twisted"),
-    ("Sanguine", "sanguine")
-]
-
-RANK_URLS = {
-    "Recruit": "https://i.postimg.cc/4xQvGn4j/image.png",
-    "Corporal": "https://i.postimg.cc/qqQ008Yz/image.png",
-    "Sergeant": "https://i.postimg.cc/yNTLLvSg/image.png",
-    "TzTok": "https://i.postimg.cc/2S0wvVph/image.png",
-    "Officer": "https://i.postimg.cc/RF5nnB0w/image.png",
-    "Commander": "https://i.postimg.cc/wxF79JDX/image.png",
-    "TzKal": "https://i.postimg.cc/FzKCdqGg/image.png",
-    "Twisted": "https://i.postimg.cc/GttFFTN6/image.png",
-    "Sanguine": "https://i.postimg.cc/MTPyZkmy/image.png"
-}
-
 # Event when the bot is ready
 @bot.event
 async def on_ready():
     print(f'memberwizard.py script is currently running')
 
-# Monitor thread creation for the "become-a-member" channel only
+# Monitor thread creation for "rank-up" and "become-a-member" channels
 @bot.event
 async def on_thread_create(thread):
     await asyncio.sleep(2)  # Wait to ensure messages are at the bottom
+
+    # Send rank-up message without buttons in the "rank-up" channel
+    if thread.parent.id == RANK_UP_CHANNEL_ID and thread.name.startswith("Rank-Up-"):
+        embed = discord.Embed(
+            title="Rank Up :crossed_swords:",
+            description="## Screenshots within your ticket should contain: ##\n"
+                        "### 1: Full client screenshots with chatbox open :camera: ##\n"
+                        "### 2: The requirements in the image for the rank :crossed_swords: ##\n"
+                        "### 3: Your in-game name. :bust_in_silhouette: ##\n",
+            color=discord.Color.green()
+        )
+        await thread.send(embed=embed)
     
-    # Handle welcome message in the "become-a-member" channel only
-    if thread.parent.id == BECOME_MEMBER_CHANNEL_ID and thread.name.startswith("Welcome-"):
+    # Send welcome message in the "become-a-member" channel
+    elif thread.parent.id == BECOME_MEMBER_CHANNEL_ID and thread.name.startswith("Welcome-"):
         embed = discord.Embed(
             title="Welcome :wave:",
             description="### Please upload screenshots of our base requirements and a staff member will help you when available. :hourglass: ###\n"
