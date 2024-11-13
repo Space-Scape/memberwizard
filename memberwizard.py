@@ -10,7 +10,7 @@ RULES_CHANNEL_ID = 1272629843552501802
 SELF_ROLE_CHANNEL_ID = 1272648586198519818
 SUPPORT_TICKET_CHANNEL_ID = 1272648498554077304
 
-# Dictionary of rank images (case-sensitive matching)
+# Dictionary of rank images
 RANK_URLS = {
     "Recruit": "https://i.postimg.cc/4xQvGn4j/image.png",
     "Corporal": "https://i.postimg.cc/qqQ008Yz/image.png",
@@ -37,61 +37,31 @@ bot = commands.Bot(command_prefix="!", intents=intents, help_command=None)  # Di
 async def on_ready():
     print(f'memberwizard.py script is currently running')
 
-# Monitor thread creation for "rank-up" and "become-a-member" channels
+# Monitor thread creation for any rank in RANK_URLS
 @bot.event
 async def on_thread_create(thread):
     await asyncio.sleep(2)  # Wait to ensure messages are at the bottom
 
-    # Detect threads in "rank-up" channel with format RankName-Nickname
-    if thread.parent.id == RANK_UP_CHANNEL_ID and "-" in thread.name:
-        # Extract the rank from the thread name (e.g., "Officer" from "Officer-SpaceScape")
-        rank_name = thread.name.split("-")[0].strip()
+    # Iterate through RANK_URLS keys to find if any rank name is in the thread name
+    for rank_name, image_url in RANK_URLS.items():
+        if rank_name.lower() in thread.name.lower():  # Case-insensitive match
+            print(f"Match found: {rank_name} in thread {thread.name}")
 
-        # Debugging: print the extracted rank name
-        print(f"Extracted rank name: {rank_name}")
+            # Create the embed for the rank
+            embed = discord.Embed(
+                title=f"Request a Rank Up for {rank_name} :crossed_swords:",
+                description="### Important: 📢\n"
+                            "1. No Bank Screenshots! 🚫🏦\n"
+                            "2. Full client screenshots with chatbox open 📸\n"
+                            "3. Please make sure you meet the requirements ⚔️\n"
+                            "4. Your server nickname should match your RSN 👤\n\n",
+                color=discord.Color.red()
+            )
+            embed.set_image(url=image_url)
 
-        # Get the image URL for the rank, if it exists (case-sensitive matching)
-        rank_image_url = RANK_URLS.get(rank_name, None)
-
-        # Debugging: print whether an image URL was found
-        if rank_image_url:
-            print(f"Image URL found for rank '{rank_name}': {rank_image_url}")
-        else:
-            print(f"No image URL found for rank '{rank_name}'")
-
-        # Construct the rank-up message
-        embed = discord.Embed(
-            title=f"Request a Rank Up for {rank_name} :crossed_swords:",
-            description="### Important: 📢\n"
-                        "1. No Bank Screenshots! 🚫🏦\n"
-                        "2. Full client screenshots with chatbox open 📸\n"
-                        "3. Please make sure you meet the requirements ⚔️\n"
-                        "4. Your server nickname should match your RSN 👤\n\n"
-                        "Select the role you are eligible for below.\n",
-            color=discord.Color.red()
-        )
-
-        # Set the image in the embed if the rank image exists
-        if rank_image_url:
-            embed.set_image(url=rank_image_url)
-
-        await thread.send(embed=embed)
-    
-    # Send welcome message in the "become-a-member" channel only
-    elif thread.parent.id == BECOME_MEMBER_CHANNEL_ID and thread.name.startswith("Welcome-"):
-        embed = discord.Embed(
-            title="Welcome :wave:",
-            description="### Please upload screenshots of our base requirements and a staff member will help you when available. :hourglass: ###\n"
-                        "## **Important:**  :loudspeaker: ##\n"
-                        "### 1. No Bank Screenshots! :no_entry_sign: :bank: ###\n"
-                        "### 2. Full client screenshots with chatbox open :camera: ###\n"
-                        "### 3. Please make sure you meet the requirements :crossed_swords: ###\n"
-                        "### 4. Your server nickname must match your RSN :bust_in_silhouette: ###\n"
-                        "# Base requirements to join: #",
-            color=discord.Color.green()
-        )
-        embed.set_image(url="https://i.postimg.cc/fbw5kWMT/image.png")
-        await thread.send(embed=embed)
+            # Send the embed to the thread
+            await thread.send(embed=embed)
+            break  # Stop after the first match is found to avoid sending multiple messages
 
 # Handle the addition of the "Recruit" role
 @bot.event
