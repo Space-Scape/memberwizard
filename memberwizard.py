@@ -10,7 +10,7 @@ RULES_CHANNEL_ID = 1272629843552501802
 SELF_ROLE_CHANNEL_ID = 1272648586198519818
 SUPPORT_TICKET_CHANNEL_ID = 1272648498554077304
 
-# Dictionary of rank images
+# Dictionary of rank images (case-sensitive matching)
 RANK_URLS = {
     "Recruit": "https://i.postimg.cc/4xQvGn4j/image.png",
     "Corporal": "https://i.postimg.cc/qqQ008Yz/image.png",
@@ -44,11 +44,20 @@ async def on_thread_create(thread):
 
     # Detect threads in "rank-up" channel with format RankName-Nickname
     if thread.parent.id == RANK_UP_CHANNEL_ID and "-" in thread.name:
-        # Extract the rank from the thread name (e.g., "Commander" from "Commander-SpaceScape")
-        rank_name = thread.name.split("-")[0]
+        # Extract the rank from the thread name (e.g., "Officer" from "Officer-SpaceScape")
+        rank_name = thread.name.split("-")[0].strip()
 
-        # Get the image URL for the rank, if it exists
+        # Debugging: print the extracted rank name
+        print(f"Extracted rank name: {rank_name}")
+
+        # Get the image URL for the rank, if it exists (case-sensitive matching)
         rank_image_url = RANK_URLS.get(rank_name, None)
+
+        # Debugging: print whether an image URL was found
+        if rank_image_url:
+            print(f"Image URL found for rank '{rank_name}': {rank_image_url}")
+        else:
+            print(f"No image URL found for rank '{rank_name}'")
 
         # Construct the rank-up message
         embed = discord.Embed(
@@ -65,8 +74,6 @@ async def on_thread_create(thread):
         # Set the image in the embed if the rank image exists
         if rank_image_url:
             embed.set_image(url=rank_image_url)
-        else:
-            print(f"No image found for rank: {rank_name}")
 
         await thread.send(embed=embed)
     
