@@ -137,4 +137,14 @@ def create_welcome_embed(guild, clan_staff_role_id):
         color=discord.Color.gold()
     ).set_thumbnail(url="https://i.postimg.cc/fbw5kWMT/image.png")
 
+# Command to manually trigger the welcome message in the current channel
+@bot.command()
+async def welcome(ctx):
+    """Manually send the welcome message in the current channel."""
+    guild = ctx.guild
+    clan_staff_role_id = 1272635396991221824  # Replace with your clan staff role ID
+    
+    embed = create_welcome_embed(guild, clan_staff_role_id)
+    await ctx.send(embed=embed)
+
 bot.run(os.getenv('DISCORD_BOT_TOKEN'))
