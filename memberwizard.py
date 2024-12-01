@@ -110,32 +110,43 @@ async def on_member_update(before, after):
     if recruit_role and recruit_role not in before.roles and recruit_role in after.roles:
         await send_welcome_message(after)
 
-# Function to create the welcome message embed
-def create_welcome_embed(guild, clan_staff_role_id):
-    return discord.Embed(
-        title="🎉 Welcome to the Clan! 🎉",
-        description="**We're thrilled to have you with us!** 🎊\n\n"
-                    f"First and foremost, please make sure you visit our 📜 **[Clan Rules](https://discord.com/channels/{guild.id}/{RULES_CHANNEL_ID})** to ensure you're aware of the guidelines.\n\n"
-                    "Below are some channels that will help you get started:\n\n"
-                    f"💡 **[Self-Role Assign](https://discord.com/channels/{guild.id}/{SELF_ROLE_CHANNEL_ID})**\n"
-                    "     - *Select roles to be pinged for bosses and raids.*\n"
-                    "💭 **[General Chat](https://discord.com/channels/{guild.id}/1272629331524587623)**\n"
-                    "     - *Drop by and say hello!* 💬\n"
-                    "✨ **[Drops and Achievements](https://discord.com/channels/{guild.id}/1272629331524587624)**\n"
-                    "     - *Show off your gains and achievements.*\n"
-                    "💬 **[Clan Chat](https://discord.com/channels/{guild.id}/1272875477555482666)**\n"
-                    "     - *Stay updated on what's happening in the clan.*\n"
-                    "🏹 **[PVM Team Finder](https://discord.com/channels/{guild.id}/1272648340940525648)**\n"
-                    "     - *Find teams for PVM activities.*\n"
-                    ":loudspeaker: **[Events](https://discord.com/channels/{guild.id}/1272646577432825977)**\n"
-                    "     - *Stay informed about upcoming events, competitions, and activities!*\n"
-                    "⭐ **[Support Ticket](https://discord.com/channels/{guild.id}/{SUPPORT_TICKET_CHANNEL_ID})**\n"
-                    "     - *Contact the staff team by creating a support ticket.*\n"
-                    "⚔️ **[Rank Up](https://discord.com/channels/{guild.id}/{RANK_UP_CHANNEL_ID})**\n"
-                    "     - *Use the buttons in this channel to request a rank up.*\n\n"
-                    f"⚠️ *If you encounter any issues, you can always reach out to the Clan Staff or use the* **[Support Ticket](https://discord.com/channels/{guild.id}/{SUPPORT_TICKET_CHANNEL_ID})** *channel for assistance.*",
-        color=discord.Color.gold()
-    ).set_thumbnail(url="https://i.postimg.cc/fbw5kWMT/image.png")
+# Function to send the welcome message to the user's "become-a-member" ticket
+async def send_welcome_message(member):
+    """Sends a welcome message to the user's 'become-a-member' thread."""
+    guild = member.guild
+    become_member_channel = guild.get_channel(BECOME_MEMBER_CHANNEL_ID)
+
+    if become_member_channel:
+        # Find the user's thread by nickname or username
+        thread_name_nickname = f"Welcome-{member.nick}" if member.nick else None
+        thread_name_username = f"Welcome-{member.name}"
+
+        # Search for the thread in the channel
+        thread = discord.utils.find(
+            lambda t: t.name == thread_name_nickname or t.name == thread_name_username,
+            become_member_channel.threads
+        )
+
+        if thread:
+            # Create the welcome embed
+            embed = discord.Embed(
+                title="Welcome :wave:",
+                description="### Please upload screenshots of our base requirements and a staff member will help you when available. :hourglass: ###\n"
+                            "## **Important:**  :loudspeaker: ##\n"
+                            "### 1. No Bank Screenshots! :no_entry_sign: :bank: ###\n"
+                            "### 2. Full client screenshots with chatbox open :camera: ###\n"
+                            "### 3. Please make sure you meet the requirements :crossed_swords: ###\n"
+                            "### 4. Your server nickname must match your RSN :bust_in_silhouette: ###\n"
+                            "# Base requirements to join: #",
+                color=discord.Color.green()
+            )
+            embed.set_image(url="https://i.postimg.cc/fbw5kWMT/image.png")
+
+            await thread.send(embed=embed)
+        else:
+            print(f"Thread not found for {member.name} or {member.nick}")
+    else:
+        print("Channel not found: become-a-member")
 
 # Command to manually trigger the welcome message in the current channel
 @bot.command()
@@ -144,7 +155,12 @@ async def welcome(ctx):
     guild = ctx.guild
     clan_staff_role_id = 1272635396991221824  # Replace with your clan staff role ID
     
-    embed = create_welcome_embed(guild, clan_staff_role_id)
+    embed = discord.Embed(
+        title="🎉 Welcome to the Clan! 🎉",
+        description="**We're thrilled to have you with us!** 🎊\n\n"
+                    "Make sure you visit our rules, assign roles, and participate in clan activities!",
+        color=discord.Color.gold()
+    ).set_thumbnail(url="https://i.postimg.cc/fbw5kWMT/image.png")
     await ctx.send(embed=embed)
 
 bot.run(os.getenv('DISCORD_BOT_TOKEN'))
