@@ -130,29 +130,29 @@ async def send_welcome_message(member):
         if thread:
             # Create the welcome embed
             embed = discord.Embed(
-               title="🎉 Welcome to the Clan! 🎉",
-               description="**We're thrilled to have you with us!** 🎊\n\n"
-                    f"First and foremost, please make sure you visit our 📜 **[Clan Rules](https://discord.com/channels/{guild.id}/{RULES_CHANNEL_ID})** to ensure you're aware of the guidelines.\n\n"
-                    "Below are some channels that will help you get started:\n\n"
-                    f"💡 **[Self-Role Assign](https://discord.com/channels/{guild.id}/{SELF_ROLE_CHANNEL_ID})**\n"
-                    "     - *Select roles to be pinged for bosses and raids.*\n"
-                    "💭 **[General Chat](https://discord.com/channels/{guild.id}/1272629331524587623)**\n"
-                    "     - *Drop by and say hello!* 💬\n"
-                    "✨ **[Drops and Achievements](https://discord.com/channels/{guild.id}/1272629331524587624)**\n"
-                    "     - *Show off your gains and achievements.*\n"
-                    "💬 **[Clan Chat](https://discord.com/channels/{guild.id}/1272875477555482666)**\n"
-                    "     - *Stay updated on what's happening in the clan.*\n"
-                    "🏹 **[PVM Team Finder](https://discord.com/channels/{guild.id}/1272648340940525648)**\n"
-                    "     - *Find teams for PVM activities.*\n"
-                    ":loudspeaker: **[Events](https://discord.com/channels/{guild.id}/1272646577432825977)**\n"
-                    "     - *Stay informed about upcoming events, competitions, and activities!*\n"
-                    "⭐ **[Support Ticket](https://discord.com/channels/{guild.id}/{SUPPORT_TICKET_CHANNEL_ID})**\n"
-                    "     - *Contact the staff team by creating a support ticket.*\n"
-                    "⚔️ **[Rank Up](https://discord.com/channels/{guild.id}/{RANK_UP_CHANNEL_ID})**\n"
-                    "     - *Use the buttons in this channel to request a rank up.*\n\n"
-                    f"⚠️ *If you encounter any issues, you can always reach out to the Clan Staff or use the* **[Support Ticket](https://discord.com/channels/{guild.id}/{SUPPORT_TICKET_CHANNEL_ID})** *channel for assistance.*",
-        color=discord.Color.gold()
-    ).set_thumbnail(url="https://i.postimg.cc/fbw5kWMT/image.png")
+                title="🎉 Welcome to the Clan! 🎉",
+                description="**We're thrilled to have you with us!** 🎊\n\n"
+                            f"First and foremost, please make sure you visit our 📜 **[Clan Rules](https://discord.com/channels/{guild.id}/{RULES_CHANNEL_ID})** to ensure you're aware of the guidelines.\n\n"
+                            "Below are some channels that will help you get started:\n\n"
+                            f"💡 **[Self-Role Assign](https://discord.com/channels/{guild.id}/{SELF_ROLE_CHANNEL_ID})**\n"
+                            "     - *Select roles to be pinged for bosses and raids.*\n"
+                            "💭 **[General Chat](https://discord.com/channels/{guild.id}/1272629331524587623)**\n"
+                            "     - *Drop by and say hello!* 💬\n"
+                            "✨ **[Drops and Achievements](https://discord.com/channels/{guild.id}/1272629331524587624)**\n"
+                            "     - *Show off your gains and achievements.*\n"
+                            "💬 **[Clan Chat](https://discord.com/channels/{guild.id}/1272875477555482666)**\n"
+                            "     - *Stay updated on what's happening in the clan.*\n"
+                            "🏹 **[PVM Team Finder](https://discord.com/channels/{guild.id}/1272648340940525648)**\n"
+                            "     - *Find teams for PVM activities.*\n"
+                            ":loudspeaker: **[Events](https://discord.com/channels/{guild.id}/1272646577432825977)**\n"
+                            "     - *Stay informed about upcoming events, competitions, and activities!*\n"
+                            "⭐ **[Support Ticket](https://discord.com/channels/{guild.id}/{SUPPORT_TICKET_CHANNEL_ID})**\n"
+                            "     - *Contact the staff team by creating a support ticket.*\n"
+                            "⚔️ **[Rank Up](https://discord.com/channels/{guild.id}/{RANK_UP_CHANNEL_ID})**\n"
+                            "     - *Use the buttons in this channel to request a rank up.*\n\n"
+                            f"⚠️ *If you encounter any issues, you can always reach out to the Clan Staff or use the* **[Support Ticket](https://discord.com/channels/{guild.id}/{SUPPORT_TICKET_CHANNEL_ID})** *channel for assistance.*",
+                color=discord.Color.gold()
+            ).set_thumbnail(url="https://i.postimg.cc/fbw5kWMT/image.png")
 
             await thread.send(embed=embed)
         else:
@@ -165,10 +165,9 @@ async def send_welcome_message(member):
 async def welcome(ctx):
     """Manually send the welcome message in the current channel."""
     guild = ctx.guild
-    clan_staff_role_id = 1272635396991221824  # Replace with your clan staff role ID
-        embed = discord.Embed(
-            title="🎉 Welcome to the Clan! 🎉",
-               description="**We're thrilled to have you with us!** 🎊\n\n"
+    embed = discord.Embed(
+        title="🎉 Welcome to the Clan! 🎉",
+        description="**We're thrilled to have you with us!** 🎊\n\n"
                     f"First and foremost, please make sure you visit our 📜 **[Clan Rules](https://discord.com/channels/{guild.id}/{RULES_CHANNEL_ID})** to ensure you're aware of the guidelines.\n\n"
                     "Below are some channels that will help you get started:\n\n"
                     f"💡 **[Self-Role Assign](https://discord.com/channels/{guild.id}/{SELF_ROLE_CHANNEL_ID})**\n"
@@ -190,6 +189,7 @@ async def welcome(ctx):
                     f"⚠️ *If you encounter any issues, you can always reach out to the Clan Staff or use the* **[Support Ticket](https://discord.com/channels/{guild.id}/{SUPPORT_TICKET_CHANNEL_ID})** *channel for assistance.*",
         color=discord.Color.gold()
     ).set_thumbnail(url="https://i.postimg.cc/fbw5kWMT/image.png")
+
     await ctx.send(embed=embed)
 
 bot.run(os.getenv('DISCORD_BOT_TOKEN'))
