@@ -12,15 +12,14 @@ SUPPORT_TICKET_CHANNEL_ID = 1272648498554077304
 
 # Dictionary of rank images
 RANK_URLS = {
-    "Recruit": "https://i.postimg.cc/4xQvGn4j/image.png",
-    "Corporal": "https://i.postimg.cc/qqQ008Yz/image.png",
+    "Recruit": "https://i.postimg.cc/kg6CjRV1/image.png",
+    "Corporal": "https://i.postimg.cc/7LSk4vnS/image.png",
     "Sergeant": "https://i.postimg.cc/yNTLLvSg/image.png",
-    "TzTok": "https://i.postimg.cc/2S0wvVph/image.png",
-    "Officer": "https://i.postimg.cc/RF5nnB0w/image.png",
-    "Commander": "https://i.postimg.cc/wxF79JDX/image.png",
-    "TzKal": "https://i.postimg.cc/FzKCdqGg/image.png",
-    "Twisted": "https://i.postimg.cc/GttFFTN6/image.png",
-    "Sanguine": "https://i.postimg.cc/MTPyZkmy/image.png"
+    "TzTok": "https://i.postimg.cc/mkgf7PfS/image.png",
+    "Officer": "https://i.postimg.cc/Gtg0Kbbn/image.png",
+    "Commander": "https://i.postimg.cc/pXyMT5BW/image.png",
+    "TzKal": "https://i.postimg.cc/x1zrGr7B/image.png",
+    "Sanguine": "https://i.postimg.cc/mrfv8XWk/image.png"
 }
 
 # Discord Bot Setup
